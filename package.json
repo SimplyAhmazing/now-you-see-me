@@ -1,0 +1,18 @@
+{
+  "name": "now-you-see-me",
+  "version": "0.0.0",
+  "description": "A Desktop app that lets you view your desktop files system visually.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahmed Abdalla",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.8.4"
+  },
+  "dependencies": {
+    "atom-shell": "^0.23.0",
+    "watch": "^0.16.0"
+  }
+}
