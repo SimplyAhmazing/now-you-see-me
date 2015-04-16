@@ -1,0 +1,48 @@
+{
+  "name": "watch-fs",
+  "version": "0.0.7",
+  "description": "Filesystem watcher",
+  "main": "lib/watcher.js",
+  "dependencies": {
+    "async": "~0.2.7"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "should": "~1.2.2",
+    "mkdirp": "~0.3.5"
+  },
+  "author": {
+    "name": "Gabriel Adomnicai",
+    "email": "gabesoft@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gabesoft/watch-fs.git"
+  },
+  "license": "MIT",
+  "readme": "```\n                 _____      ______        ________       \n___      _______ __  /_________  /_       ___  __/_______\n__ | /| / /  __ `/  __/  ___/_  __ \\________  /_ __  ___/\n__ |/ |/ // /_/ // /_ / /__ _  / / //_____/  __/ _(__  ) \n____/|__/ \\__,_/ \\__/ \\___/ /_/ /_/       /_/    /____/  \n```\n\n\n\n*Watches your files and folders and gets out of the way*\n\n##Quickstart\n\nWatching files in a directory is as simple as instantiating a watcher and handling  \nevents emitted when files get created, changed, or deleted.\n\n```javascript\nvar Watcher = require('watch-fs').Watcher;\n\nvar watcher = new Watcher({\n    paths: [ 'path-to-my-dir', 'path-to-my-file', 'etc' ],\n    filters: {\n        includeFile: function(name) {\n            return /\\.js/.test(name);\n        }\n    }\n});\n\nwatcher.on('create', function(name) {\n    console.log('file ' + name + ' created');\n});\n\nwatcher.on('change', function(name) {\n    console.log('file ' + name + ' changed');\n});\n\nwatcher.on('delete', function(name) {\n    console.log('file ' + name + ' deleted');\n});\n\nwatcher.start(function(err, failed) {\n    console.log('watcher started');\n    console.log('files not found', failed);\n});\n```\n\n## Start\nThis will start the watcher. Any files that could not be accessed are passed \nto the second parameter of the callback as an array of objects of the type \n``{ path: name, error: err }``\n\n## Options\n\nThe following options can be specified when creating a Watcher object\n\n### options.paths\n\nThis could be a string or an array containing paths to files or directories.  \nAny directories specified will be watched recursively unless limited by filtering.  \n\n```javascript\nvar watcher1 = new Watcher({\n    paths: '/work/my-project'\n});\n\nvar watcher2 = new Watcher({\n    paths: [ '/work/my-other-project', '/work/my-file' ]\n});\n```\n\n### options.filters\n\nFilters can be used to limit which files or directories are being watched.  \n`filters` should be an object containing two functions `includeDir` and `includeFile`.  \nBoth functions will be called when traversing the file system with the full path of each  \nfile or directory encountered.  \n\nThe example below will watch the specified folder and will recurse only one folder below  \n\n```javascript\nvar watcher = new Watcher({\n    paths: '/work/my-project',\n    filters: {\n        includeDir: function(fullPath) {\n            return /^\\/work\\/my-project(\\/[^/]+)?$/.test(fullPath);\n        }\n    }\n});\n```\n\nIn the next example we're watching only js files and we're skipping .git and node_modules folders  \n\n```javascript\nvar watcher = new Watcher({\n    paths: '/work/my-project',\n    filters: {\n        includeDir: function(fullPath) {\n            var skip = /(\\.git)|(node_modules)/.test(fullPath);\n            return !skip;\n        },\n        includeFile: function(fullPath) {\n            return /\\.js/.test(fullPath);\n        }\n    }\n});\n```\n\n## Events\n\n* `create` fired when a file is created\n* `change` fired when a file is changed\n* `delete` fired when a file is deleted\n* `any` fires when any of the above events fire\n\n```javascript\nwatcher.on('create', function(name) {\n    console.log('file ' + name + ' created');\n});\n\nwatcher.on('any', function(name, type) {\n    console.log('file ' + name + ' ' + type + 'd');\n});\n```\n\nNOTES: \n* Not tested on Windows\n* Internally it uses fs.watch which could throw an EMFILE error when watching too many files. In those cases ulimit needs to be increased. Use the [posix](https://github.com/melor/node-posix) module to increase the ulimit from within a node js process.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/gabesoft/watch-fs/issues"
+  },
+  "_id": "watch-fs@0.0.7",
+  "dist": {
+    "shasum": "ba16bfdfa4e963c9b7275bac3b0cbf3ffc518895",
+    "tarball": "http://registry.npmjs.org/watch-fs/-/watch-fs-0.0.7.tgz"
+  },
+  "_from": "watch-fs@",
+  "_npmVersion": "1.2.32",
+  "_npmUser": {
+    "name": "gabesoft",
+    "email": "gabesoft@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "gabesoft",
+      "email": "gabesoft@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "ba16bfdfa4e963c9b7275bac3b0cbf3ffc518895",
+  "_resolved": "https://registry.npmjs.org/watch-fs/-/watch-fs-0.0.7.tgz"
+}
