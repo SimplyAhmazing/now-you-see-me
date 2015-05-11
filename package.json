@@ -16,6 +16,7 @@
     "d3": "^3.5.5",
     "directory-tree": "^0.1.1",
     "domready": "^1.0.7",
+    "materialize-css": "^0.96.1",
     "watch-fs": "0.0.7"
   }
 }

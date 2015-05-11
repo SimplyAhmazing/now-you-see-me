@@ -20,7 +20,7 @@ app.on('window-all-closed', function(){
 app.on('ready', function(){
   // create the browser window
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 1000,
     height: 600,
     title: "Now You See Me"
   });
