@@ -52,14 +52,28 @@
     <body>
         <div class="container-fluid">
             <div class="row no-gutter">
-                <div class="col-md-8 col-md-offset-2"><input type="text" class="form-control" value="/Users/home/ahmed/Projects/sos"></div>
+                <div class="col-md-8 col-md-offset-1"><input id="selected-dir" type="text" class="form-control" value="/Users/home/ahmed/Projects/sos"></div>
+                <div class="col-md-2">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            Visualization
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Packed Circles</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sunburst</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="row no-gutter">
                 <div class="col-md-8">.col-md-8</div>
                 <div class="col-md-4">.col-md-4</div>
             </div>
         </div>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/d3/d3.js"></script>
-        <!-- <script src="lib/app.js"></script> -->
+        <script src="static/js/bootstrap.min.js"></script>
+        <script src="lib/app.js"></script>
     </body>
 </html>
